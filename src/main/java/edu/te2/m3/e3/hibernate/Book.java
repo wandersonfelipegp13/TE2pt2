@@ -14,6 +14,14 @@ public class Book implements Serializable {
 	private String author;
 	private float price;
 
+	public Book(long id, String title, String author, float price) {
+		super();
+		this.setId(id);
+		this.setTitle(title);
+		this.setAuthor(author);
+		this.setPrice(price);
+	}
+	
 	public Book(String title, String author, float price) {
 		super();
 		this.setTitle(title);

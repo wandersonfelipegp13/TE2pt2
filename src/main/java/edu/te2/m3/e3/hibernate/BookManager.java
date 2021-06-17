@@ -48,13 +48,8 @@ public class BookManager {
 		return book;
 	}
 
-	protected void update() {
+	protected void update(Book book) {
 		// code to modify a book
-		Book book = new Book();
-		book.setId(1);
-		book.setTitle("Teste");
-		book.setAuthor("Nam Ha Minh");
-		book.setPrice(19.99f);
 
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
@@ -85,12 +80,12 @@ public class BookManager {
 		BookManager manager = new BookManager();
 		manager.setup();
 
-		// Book book = new Book("Java 2020", "Pedro", 20.45f);
-		
+		// Book book1 = new Book("Java 2020", "Pedro", 20.45f);
 		// manager.create(book);
-		Book b2 = manager.read(9);
-		System.out.println(b2.toString());
-		// manager.update();
+		// Book book2 = manager.read(9);
+		// System.out.println(book2.toString());
+		Book book3 = new Book(6, "Java 2021", "Zé", 40.34f);
+		manager.update(book3);
 		// manager.delete();
 
 		manager.exit();
