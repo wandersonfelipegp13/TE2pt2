@@ -60,10 +60,8 @@ public class BookManager {
 		session.close();
 	}
 
-	protected void delete() {
+	protected void delete(Book book) {
 		// code to remove a book
-		Book book = new Book();
-		book.setId(1);
 
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
@@ -82,11 +80,13 @@ public class BookManager {
 
 		// Book book1 = new Book("Java 2020", "Pedro", 20.45f);
 		// manager.create(book);
-		// Book book2 = manager.read(9);
+		// Book book2 = manager.read(1);
 		// System.out.println(book2.toString());
-		Book book3 = new Book(6, "Java 2021", "Zé", 40.34f);
-		manager.update(book3);
-		// manager.delete();
+		// Book book3 = new Book(6, "Java 2021", "Zé", 40.34f);
+		// manager.update(book3);
+		Book book3 = new Book();
+		book3.setId(1);
+		manager.delete(book3);
 
 		manager.exit();
 	}
