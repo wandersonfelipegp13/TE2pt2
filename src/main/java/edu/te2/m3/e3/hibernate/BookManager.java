@@ -38,18 +38,14 @@ public class BookManager {
 		session.close();
 	}
 
-	protected void read() {
+	protected Book read(long bookId) {
 		// code to get a book
 		Session session = sessionFactory.openSession();
 
-		long bookId = 1;
 		Book book = session.get(Book.class, bookId);
 
-		System.out.println("Title: " + book.getTitle());
-		System.out.println("Author: " + book.getAuthor());
-		System.out.println("Price: " + book.getPrice());
-
 		session.close();
+		return book;
 	}
 
 	protected void update() {
@@ -89,10 +85,11 @@ public class BookManager {
 		BookManager manager = new BookManager();
 		manager.setup();
 
-		Book book = new Book("Java 2020", "Pedro", 20.45f);
+		// Book book = new Book("Java 2020", "Pedro", 20.45f);
 		
-		manager.create(book);
-		// manager.read();
+		// manager.create(book);
+		Book b2 = manager.read(9);
+		System.out.println(b2.toString());
 		// manager.update();
 		// manager.delete();
 
