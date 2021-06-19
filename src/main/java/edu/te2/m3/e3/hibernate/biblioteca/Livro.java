@@ -1,7 +1,7 @@
 package edu.te2.m3.e3.hibernate.biblioteca;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -38,7 +38,7 @@ public class Livro {
 
 	@Column(name = "lancamento")
 	@Temporal(TemporalType.DATE)
-	private LocalDate lancamento;
+	private Date lancamento;
 
 	@Basic(optional = false)
 	@OneToOne(cascade = CascadeType.ALL)
@@ -49,7 +49,7 @@ public class Livro {
 		super();
 	}
 	
-	public Livro(String titulo, BigDecimal preco, LocalDate lancamento, Editora editora) {
+	public Livro(String titulo, BigDecimal preco, Date lancamento, Editora editora) {
 		super();
 		this.setTitulo(titulo);
 		this.setPreco(preco);
@@ -57,7 +57,7 @@ public class Livro {
 		this.setEditora(editora);
 	}
 	
-	public Livro(Long codigo, String titulo, BigDecimal preco, LocalDate lancamento, Editora editora) {
+	public Livro(Long codigo, String titulo, BigDecimal preco, Date lancamento, Editora editora) {
 		super();
 		this.setCodigo(codigo);
 		this.setTitulo(titulo);
@@ -90,11 +90,11 @@ public class Livro {
 		this.preco = preco;
 	}
 
-	public LocalDate getLancamento() {
+	public Date getLancamento() {
 		return lancamento;
 	}
 
-	public void setLancamento(LocalDate lancamento) {
+	public void setLancamento(Date lancamento) {
 		this.lancamento = lancamento;
 	}
 

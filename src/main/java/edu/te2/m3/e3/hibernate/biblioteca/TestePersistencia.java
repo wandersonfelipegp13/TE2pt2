@@ -1,6 +1,7 @@
 package edu.te2.m3.e3.hibernate.biblioteca;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
@@ -24,6 +25,7 @@ public class TestePersistencia {
 		try {
 			sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
 		} catch (Exception ex) {
+			System.out.println("Erro: " + ex.getMessage() + "\n");
 			StandardServiceRegistryBuilder.destroy(registry);
 		}
 
@@ -38,9 +40,12 @@ public class TestePersistencia {
 		editora.setNome("Pearson");
 
 		Livro livro = new Livro();
-		livro.setTitulo("Java with Spring");
-		livro.setPreco(new BigDecimal("412.65"));
-		livro.setLancamento(LocalDate.of(2019, Month.APRIL, 25));
+		livro.setTitulo("Teste 3");
+		livro.setPreco(new BigDecimal("12.65"));
+		
+		Date date = Date.valueOf(LocalDate.of(1967, Month.FEBRUARY, 22));
+
+		livro.setLancamento(date);
 		livro.setEditora(editora);
 
 		Session session = sessionFactory.openSession();
@@ -65,7 +70,10 @@ public class TestePersistencia {
 		Livro livro = new Livro();
 		livro.setTitulo("SOA");
 		livro.setPreco(new BigDecimal("412.65"));
-		livro.setLancamento(LocalDate.of(2018, Month.DECEMBER, 14));
+		
+		Date date = Date.valueOf(LocalDate.of(2018, Month.DECEMBER, 14));
+		livro.setLancamento(date);
+		
 		livro.setEditora(editora);
 
 		session.save(livro);
@@ -97,7 +105,12 @@ public class TestePersistencia {
 		TestePersistencia teste = new TestePersistencia();
 		teste.setup();
 
-		teste.create();
+		// teste.create();
+		
+		Editora ed = new Editora("Bahia");
+		Date date = Date.valueOf(LocalDate.of(2018, Month.DECEMBER, 14));
+		teste.create(new Livro("Teste 4", new BigDecimal("134.42"), date, ed));
+		
 		teste.exit();
 
 	}
