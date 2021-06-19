@@ -82,11 +82,11 @@ public class BookManager {
 		// manager.create(book);
 		// Book book2 = manager.read(1);
 		// System.out.println(book2.toString());
-		// Book book3 = new Book(6, "Java 2021", "Zé", 40.34f);
+		// Book book3 = new Book(6, "Java Dev 2021", "Zé", 40.34f);
 		// manager.update(book3);
-		Book book3 = new Book();
-		book3.setId(1);
-		manager.delete(book3);
+		// Book book3 = new Book();
+		// book3.setId(1);
+		// manager.delete(book3);
 
 		manager.exit();
 	}
