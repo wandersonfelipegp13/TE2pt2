@@ -1,10 +1,13 @@
 package edu.te2.m3.e3.hibernate;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.query.Query;
 
 public class BookManager {
 	protected SessionFactory sessionFactory;
@@ -71,6 +74,29 @@ public class BookManager {
 		session.getTransaction().commit();
 		session.close();
 	}
+	
+	protected List<Book> find(String text) {
+		Session session = sessionFactory.openSession();
+		@SuppressWarnings("unchecked")
+		Query<Book> query = session.createQuery("from Book where title like :t");
+		query.setParameter("t", "%" + text + "%");
+		List<Book> listBook = query.getResultList();
+		return listBook;
+	}
+	
+	/**
+	 * Usando JPA Named Queries
+	 * @param text
+	 * @return
+	 */
+	protected List<Book> find2(String text) {
+		Session s = sessionFactory.openSession();
+		@SuppressWarnings("unchecked")
+		Query<Book> q = s.createNamedQuery("Book.findByText");
+		q.setParameter(1, "%" + text + "%");
+		List<Book> listBook = q.getResultList();
+		return listBook;
+	}
 
 	public static void main(String[] args) {
 		// code to run the program
@@ -87,6 +113,11 @@ public class BookManager {
 		// Book book3 = new Book();
 		// book3.setId(1);
 		// manager.delete(book3);
+		
+		List<Book> listBook = manager.find2("Java");
+		for (Book book : listBook) {
+			System.out.println(book);
+		}
 
 		manager.exit();
 	}

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
+@NamedQuery(name = "Book.findByText", query = "SELECT b FROM Book b WHERE b.title LIKE ?1")
 @Table(name = "book")
 public class Book implements Serializable {
 
