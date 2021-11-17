@@ -35,7 +35,7 @@ public class TestePersistencia {
 		sessionFactory.close();
 	}
 
-	protected void create() {
+	public void create() {
 		Editora editora = new Editora();
 		editora.setNome("Pearson");
 
@@ -57,6 +57,30 @@ public class TestePersistencia {
 		session.close();
 	}
 
+	protected void delete() {
+		// code to remove a book
+		Editora e = read();
+
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+
+		session.delete(e);
+
+		session.getTransaction().commit();
+		session.close();
+	}
+	
+	protected Editora read() {
+		// code to get a book
+		Session session = sessionFactory.openSession();
+
+		long id = 16;
+		Editora e = session.get(Editora.class, id);
+		
+		session.close();
+		return e;
+	}
+	
 	protected void create0() {
 
 		Session session = sessionFactory.openSession();
@@ -101,18 +125,34 @@ public class TestePersistencia {
 	}
 
 	public static void main(String args[]) {
-
+		
+		/*
 		TestePersistencia teste = new TestePersistencia();
 		teste.setup();
-
-		// teste.create();
 		
-		Editora ed = new Editora("Bahia");
+		Editora ed = new Editora();
+		ed.setCodigo(new Long(6));
+		ed.setNome("Bahia");
+		
+		DAOEditora daoEd = new DAOEditora();
+		daoEd.create(ed);
+		
 		Date date = Date.valueOf(LocalDate.of(2018, Month.DECEMBER, 14));
-		teste.create(new Livro("Teste 4", new BigDecimal("134.42"), date, ed));
+		Livro livro = new Livro();
+		livro.setEditora(ed);
+		livro.setLancamento(date);
+		livro.setPreco(new BigDecimal(13.2));
+		livro.setTitulo("Solae");
+		
+		teste.create(livro);
 		
 		teste.exit();
-
+		*/
+		TestePersistencia t = new TestePersistencia();
+		t.setup();
+		// t.create();
+		t.delete();
+		t.exit();
 	}
 
 }

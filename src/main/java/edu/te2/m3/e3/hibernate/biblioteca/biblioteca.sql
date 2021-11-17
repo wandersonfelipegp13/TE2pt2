@@ -14,7 +14,7 @@ CREATE TABLE livro(
 	lancamento DATE,
 	
 	editora_id INT,
-    CONSTRAINT fk_Editora FOREIGN KEY (editora_id) REFERENCES Editora (id)
+	CONSTRAINT fk_Editora FOREIGN KEY (editora_id) REFERENCES Editora (id)
 		
 ) ENGINE=InnoDB;
 

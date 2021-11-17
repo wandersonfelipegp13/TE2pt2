@@ -1,6 +1,6 @@
 package edu.te2.m3.e3.jpa;
 
-import javax.persistence.EntityManager;
+// import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -10,7 +10,7 @@ public class AlunoManager {
 		
 		EntityManagerFactory objFactory = Persistence.createEntityManagerFactory("PAluno");
 		
-		EntityManager manager = objFactory.createEntityManager();
+		// EntityManager manager = objFactory.createEntityManager();
 		
 		AlunoJpaController jpa = new AlunoJpaController(objFactory);
 		
